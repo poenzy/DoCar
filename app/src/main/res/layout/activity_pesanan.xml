@@ -206,7 +206,7 @@
         android:paddingTop="30dp"
         android:paddingBottom="16dp"
         android:paddingHorizontal="24dp"
-        androidLAGUETTE="@drawable/bg_bottom_sheet"
+        android:LAGUETTE="@drawable/bg_bottom_sheet"
         android:elevation="6dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNav">
 
@@ -251,7 +251,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="8dp"
-                android_layout_marginStart="8dp"
+                android:layout_marginStart="8dp"
                 android:progress="0"
                 android:progressTint="@color/grey_line"
                 android:backgroundTint="@color/grey_line"
@@ -292,7 +292,7 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/primary_black"
-        appika:itemTextColor="@color/primary_black"
+        app:itemTextColor="@color/primary_black"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
