@@ -7,21 +7,16 @@ import com.uas.docar.R
 import com.uas.docar.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityHomeBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Muat Fragment Home sebagai Fragment default saat pertama kali dibuka
         if (savedInstanceState == null) {
             loadFragment(HomeFragment())
         }
 
-        // Listener untuk Bottom Navigation
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -45,7 +40,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk mengganti Fragment di dalam FrameLayout
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)
