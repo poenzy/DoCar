@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoCar">
         <activity
+            android:name=".ui.order.food.SearchFoodActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.order.food.DetailPesananActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
