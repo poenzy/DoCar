@@ -19,10 +19,8 @@ class OrderConfirmationActivity : AppCompatActivity() {
         binding = ActivityOrderConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Tampilkan Harga Awal (Default Motor)
         updatePriceDisplay(hargaMotor)
 
-        // 2. Listener untuk RadioGroup Kendaraan
         binding.rgKendaraan.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 binding.rbMotor.id -> { currentPrice = hargaMotor; updatePriceDisplay(hargaMotor) }
@@ -30,13 +28,10 @@ class OrderConfirmationActivity : AppCompatActivity() {
             }
         }
 
-        // 3. Listener Tombol Mencari Driver
         binding.btnCariDriver.setOnClickListener {
             val intent = Intent(this, DriverStatusRideActivity::class.java).apply {
-                // Meneruskan data harga ride yang sudah diupdate
                 putExtra(OrderFinishedActivity.ORDER_TYPE_KEY, OrderFinishedActivity.TYPE_RIDE)
                 putExtra("EXTRA_TOTAL", currentPrice)
-                // Tambahkan data ride lainnya
                 putExtra("EXTRA_DISTANCE", 500)
                 putExtra("EXTRA_TIME", 7)
             }
@@ -45,7 +40,6 @@ class OrderConfirmationActivity : AppCompatActivity() {
         }
     }
 
-    // FUNGSI INI ADALAH SOLUSI UNTUK ERROR UNRESOLVED REFERENCE
     private fun updatePriceDisplay(price: Int) {
         val formattedPrice = Formatter.toRupiah(price)
         binding.tvBasePrice.text = formattedPrice + ",-"
