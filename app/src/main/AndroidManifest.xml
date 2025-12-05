@@ -11,23 +11,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoCar">
-        <activity
-            android:name=".ui.order.food.SearchFoodActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".ui.order.food.DetailPesananActivity"
-            android:exported="true">
-        </activity>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false" />
+
+<!--        <activity-->
+<!--            android:name=".ui.order.food.SearchFoodActivity"-->
+<!--            android:exported="false" />-->
+
+<!--        <activity-->
+<!--            android:name=".ui.order.ride.OrderConfirmationActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.order.ride.DriverStatusRideActivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".ui.order.ride.SearchInputActivity"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.order.ride.OrderFinishedActivity"-->
+<!--            android:exported="false" />-->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="GANTI_DENGAN_GOOGLE_MAPS_API_KEY_ANDA" />
+
+    </application>
 </manifest>
