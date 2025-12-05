@@ -1,14 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.PesananFragment">
+    android:background="#F5F5F5">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tvHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Pesanan"
+        android:textColor="@color/primary_black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imgMap"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_map_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/bottomSheetLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        tools:background="#DDD" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivOriginDot"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_circle_blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvOriginLabel"
+                app:layout_constraintBottom_toBottomOf="@id/tvOriginLabel"/>
+
+            <View
+                android:id="@+id/viewDottedLine"
+                android:layout_width="2dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_dotted_line"
+                android:rotation="90"
+                app:layout_constraintTop_toBottomOf="@id/ivOriginDot"
+                app:layout_constraintBottom_toTopOf="@id/ivDestPin"
+                app:layout_constraintStart_toStartOf="@id/ivOriginDot"
+                app:layout_constraintEnd_toEndOf="@id/ivOriginDot"/>
+
+            <ImageView
+                android:id="@+id/ivDestPin"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_driver"
+                app:layout_constraintStart_toStartOf="@id/ivOriginDot"
+                app:layout_constraintTop_toTopOf="@id/tvDestAddr"
+                app:layout_constraintBottom_toBottomOf="@id/tvDestAddr"/>
+            <TextView
+                android:id="@+id/tvOriginLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Lokasimu"
+                android:textSize="14sp"
+                android:textColor="@color/primary_black"
+                app:layout_constraintStart_toEndOf="@id/ivOriginDot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/dividerLoc"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#EEE"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvOriginLabel"
+                app:layout_constraintStart_toStartOf="@id/tvOriginLabel"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvDestAddr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:text="Jl. Cihuy, RT.43/RW82, Segulung..."
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/primary_black"
+                app:layout_constraintStart_toEndOf="@id/ivDestPin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dividerLoc"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="-20dp"
+        android:elevation="8dp"
+        android:padding="16dp"
+        android:background="@drawable/bg_rounded_card"
+        android:backgroundTint="@color/bg_light_green"
+        app:layout_constraintBottom_toTopOf="@id/bottomSheetLayout">
+
+        <TextView
+            android:id="@+id/tvLabelJarak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jarak"
+            android:textSize="12sp"
+            android:textColor="@color/text_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/layoutJarakVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLabelJarak">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.5"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="#1B3A2D"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Km"
+                android:textSize="16sp"
+                android:layout_marginStart="4dp"
+                android:textColor="#1B3A2D"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLabelWaktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waktu tempuh"
+            android:textSize="12sp"
+            android:textColor="@color/text_grey"
+            android:layout_marginStart="60dp"
+            app:layout_constraintStart_toEndOf="@id/layoutJarakVal"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/tvLabelWaktu"
+            app:layout_constraintTop_toBottomOf="@id/tvLabelWaktu">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="#1B3A2D"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Menit"
+                android:textSize="16sp"
+                android:layout_marginStart="4dp"
+                android:textColor="#1B3A2D"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:LAGUETTE="@drawable/bg_bottom_sheet"
+        android:elevation="6dp"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tvStatusTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menunggu Driver"
+            android:textColor="@color/primary_black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progressContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvStatusTitle">
+
+            <FrameLayout
+                android:id="@+id/iconScooterWrapper"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_circle_blue"
+                android:backgroundTint="@color/gojek_green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_driver" />
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/grey_line"
+                android:progress="0"
+                android:progressTint="@color/grey_line"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iconScooterWrapper"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Dalam Perjalanan Jemput kamu!"
+            android:textColor="@color/primary_black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/progressContainer" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Dirvernya lagi ngebut ke tempatmu, tapi tetap taat aturan lalu lintas, kok!"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
