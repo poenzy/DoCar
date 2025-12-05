@@ -1,6 +1,51 @@
 package com.uas.docar.ui.home
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.uas.docar.R
+import com.uas.docar.databinding.ActivityHomeBinding // View Binding untuk activity_home.xml
 
-class HomeActivity() {
+class HomeActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityHomeBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        if (savedInstanceState == null) {
+            loadFragment(HomeFragment())
+        }
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    loadFragment(HomeFragment())
+                    true
+                }
+                R.id.nav_pesanan -> {
+                    loadFragment(PesananFragment())
+                    true
+                }
+                R.id.nav_riwayat -> {
+                    loadFragment(RiwayatFragment())
+                    true
+                }
+                R.id.nav_chat -> {
+                    loadFragment(ChatFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, fragment)
+            .commit()
+    }
 }
