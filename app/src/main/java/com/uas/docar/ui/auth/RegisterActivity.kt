@@ -9,42 +9,56 @@ import com.uas.docar.ui.home.HomeActivity
 
 class RegisterActivity : AppCompatActivity() {
 
+    // View Binding: Cara mengakses elemen UI (EditText, Button) tanpa 'findViewById'
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // 1. Inisialisasi Tampilan (Inflating Layout)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Ketika tombol diklik, jalankan fungsi 'handleRegistration'
         binding.btnDaftar.setOnClickListener {
             handleRegistration()
         }
     }
 
+    // LOGIKA REGISTRASI
     private fun handleRegistration() {
+        //  Mengambil Data dari Input Pengguna
+        // .trim() digunakan untuk menghapus spasi tidak sengaja di awal/akhir teks
         val namaLengkap = binding.etNamaLengkap.text.toString().trim()
         val emailHp = binding.etEmailHp.text.toString().trim()
         val password = binding.etRegPassword.text.toString().trim()
         val konfirmasiPassword = binding.etKonfirmasiPassword.text.toString().trim()
-        val isChecked = binding.cbUpdate.isChecked
+        val isChecked = binding.cbUpdate.isChecked // Cek apakah user setuju update berita (opsional)
 
+        // Validasi :Cek Kekosongan Data
+        // sistem akan menolak jika ada satu saja kolom yang kosong."
         if (namaLengkap.isEmpty() || emailHp.isEmpty() || password.isEmpty() || konfirmasiPassword.isEmpty()) {
             Toast.makeText(this, "Semua kolom wajib diisi.", Toast.LENGTH_SHORT).show()
-            return
+            return // Berhenti di sini, jangan lanjut ke bawah
         }
 
+        // Validasi: Pencocokan Password
+        // Sistem memastikan pengguna tidak typo saat membuat password.
         if (password != konfirmasiPassword) {
             Toast.makeText(this, "Konfirmasi Password tidak cocok.", Toast.LENGTH_SHORT).show()
             return
         }
 
-
+        // Simulasi Sukses (Karena belum ada Backend/Database)
         Toast.makeText(this, "Registrasi Berhasil! Anda akan masuk.", Toast.LENGTH_LONG).show()
 
-
+        // Navigasi ke Halaman Utama (Home)
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
+
+        // Membersihkan Riwayat (Stack)
+        // "finishAffinity() penting agar jika user menekan tombol 'Back' di Home,
+        // mereka tidak kembali ke halaman Register, melainkan keluar aplikasi."
         finishAffinity()
     }
 }
