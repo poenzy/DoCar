@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_bg_light"
+    tools:context="com.uas.docar.ui.home.ChatFragment">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/neutral_text_dark"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_chat_outline"
+            android:tint="@color/neutral_divider"
+            android:contentDescription="No Chat Icon"
+            android:layout_marginBottom="16dp"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum ada chat, nih..."
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/neutral_text_dark"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chat perihal transaksi, obrolan sama teman, update dari chatbot Jeklin, bakal muncul di sini."
+            android:gravity="center"
+            android:maxWidth="300dp"
+            android:textColor="@color/neutral_text_dark"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_start_chat"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Mulai nge chat"
+        android:backgroundTint="@color/neutral_divider"
+        android:textColor="@color/neutral_text_dark"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:cornerRadius="28dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
