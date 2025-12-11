@@ -27,17 +27,16 @@ class RatingDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Atur Listener untuk Tombol Submit
+        // set listener buat tombol submit
         binding.btnSubmitRating.setOnClickListener {
             val ratingValue = binding.ratingBar.rating
             val komentar = binding.etKomentar.text.toString()
 
             if (ratingValue > 0) {
-                // Logika Dummy: Kirim data rating ke Toast
                 Toast.makeText(requireContext(),
                     "Rating $ratingValue bintang berhasil dikirim. Komentar: $komentar",
                     Toast.LENGTH_LONG).show()
-                dismiss() // Tutup dialog setelah pengiriman
+                dismiss() // ini buat ilangin toastnya kalo uda input require context
             } else {
                 Toast.makeText(requireContext(), "Mohon berikan rating (minimal 1 bintang)", Toast.LENGTH_SHORT).show()
             }

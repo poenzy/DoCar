@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.uas.docar.data.model.Product
 import com.uas.docar.databinding.FragmentHomeBinding
 import com.uas.docar.ui.adapter.ProductAdapter
+import com.uas.docar.ui.order.food.DetailPesananActivity
 import com.uas.docar.ui.order.food.SearchFoodActivity
 import com.uas.docar.ui.order.ride.SearchInputActivity
 
