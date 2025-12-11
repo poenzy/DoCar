@@ -10,7 +10,7 @@ import com.uas.docar.databinding.ActivityDetailPesananBinding
 import com.uas.docar.ui.order.food.DriverStatusFoodActivity
 import com.uas.docar.ui.order.food.SearchFoodLocationActivity
 import com.uas.docar.ui.order.ride.OrderFinishedActivity
-import java.util.Formatter
+import com.uas.docar.utils.Formatter
 
 class DetailPesananActivity : AppCompatActivity() {
 

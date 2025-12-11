@@ -18,24 +18,23 @@ class ProductAdapter(
     inner class ProductViewHolder(private val binding: ItemFoodCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        // *** FUNGSI BARU: PEMETAAN GAMBAR DUMMY BERDASARKAN NAMA PRODUK ***
+        // *** FUNGSI PEMETAAN GAMBAR DUMMY BERDASARKAN NAMA PRODUK ***
+        // Fungsi ini membaca String 'productName' dari data dummy di HomeFragment.kt
         private fun getProductImageResource(productName: String): Int {
-            // Gunakan lowercase() untuk pencocokan yang tidak sensitif huruf besar/kecil
             val normalizedName = productName.lowercase()
 
-            // Mapping berdasarkan kata kunci yang mungkin ada di nama produk dummy Anda
             return when {
-                // Asumsi: Produk mengandung kata 'Bakso'
-                normalizedName.contains("bakso") -> R.drawable.ic_location_pin_red // Contoh drawable
+                // 'Bakso Bakar Goreng' -> Mengandung 'bakso' -> R.drawable.bakso
+                normalizedName.contains("bakso") -> R.drawable.bakso
 
-                // Asumsi: Produk mengandung kata 'Mie'
-                normalizedName.contains("mie") -> R.drawable.ic_star_filled // Contoh drawable
+                // 'Mie Ayam Uenak' -> Mengandung 'mie' -> R.drawable.mie_ayam
+                normalizedName.contains("mie") -> R.drawable.mie_ayam
 
-                // Asumsi: Produk mengandung kata 'Nasi' atau 'Goreng'
-                normalizedName.contains("nasi") || normalizedName.contains("goreng") -> R.drawable.ic_history // Contoh drawable
+                // 'Nasi Goreng Cihuy' -> Mengandung 'nasi' atau 'goreng' -> R.drawable.nasi_goreng
+                normalizedName.contains("nasi") || normalizedName.contains("goreng") -> R.drawable.nasi_goreng
 
-                // FALLBACK: Gambar default jika tidak cocok
-                else -> R.drawable.ic_delivery_box // Drawable default yang kita pakai sebelumnya
+                // 'Kari Seafood' -> Tidak cocok di atas -> R.drawable.kari
+                else -> R.drawable.kari // Drawable default
             }
         }
 
@@ -43,7 +42,7 @@ class ProductAdapter(
             binding.tvProductName.text = product.name
             binding.tvProductPrice.text = Formatter.toRupiah(product.price)
 
-            // V PERBAIKAN: Panggil fungsi pemetaan V
+            // V KONEKSI DENGAN DATA: Memanggil fungsi pemetaan V
             val drawableId = getProductImageResource(product.name)
             binding.ivProductImage.setImageResource(drawableId)
 
@@ -52,7 +51,7 @@ class ProductAdapter(
             }
         }
     }
-
+    // ... (Sisa kode adapter tidak berubah) ...
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemFoodCardBinding.inflate(
             LayoutInflater.from(parent.context),
