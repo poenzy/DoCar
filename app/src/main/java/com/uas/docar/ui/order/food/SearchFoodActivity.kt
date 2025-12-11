@@ -63,8 +63,8 @@ class SearchFoodActivity : AppCompatActivity() {
             navigateToDetailPesanan(product.id)
         }
 
-        // V PERBAIKAN KRITIS: Ganti LinearLayoutManager dengan GridLayoutManager V
-        val spanCount = 2 // <-- Ganti angka ini menjadi 3 jika Anda ingin 3 kolom
+        // V IMPLEMENTASI GRID LAYOUT DENGAN 2 KOLOM V
+        val spanCount = 2
         binding.rvSearchResults.layoutManager = GridLayoutManager(this, spanCount)
 
         binding.rvSearchResults.adapter = adapter
