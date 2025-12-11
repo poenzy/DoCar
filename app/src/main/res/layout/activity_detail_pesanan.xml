@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_bg_light"
+    tools:context="com.uas.docar.ui.order.food.DetailPesananActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Detail Pesanan"
+                android:textColor="@color/neutral_text_dark"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Lengkapi Detail Pesanan Anda"
+                android:textColor="@color/neutral_text_dark"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+                    <TextView
+                        android:id="@+id/tv_lokasi_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lokasi Pengiriman"
+                        android:textStyle="bold"
+                        android:textColor="@color/neutral_text_dark" />
+                    <TextView
+                        android:id="@+id/tv_lokasi_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_lokasi_label"
+                        android:text="magetan"
+                        android:textColor="@color/neutral_text_dark"
+                        android:textSize="16sp" />
+                    <Button
+                        android:id="@+id/btn_ganti_lokasi"  android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Ganti Lokasi"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/docar_green"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        app:strokeColor="@color/docar_green"
+                        app:cornerRadius="15dp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <include layout="@layout/item_detail_pesanan_makanan" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dana"
+                        android:textStyle="bold"
+                        android:textColor="@color/neutral_text_dark"
+                        android:layout_centerVertical="true" />
+                    <Button
+                        android:id="@+id/btn_ganti_metode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Ganti metode"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/docar_green"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        app:strokeColor="@color/docar_green"
+                        app:cornerRadius="15dp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Catatan Tambahan (Opsional)"
+                android:textColor="@color/neutral_text_dark"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+            <EditText
+                android:id="@+id/et_catatan"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="16dp"
+                android:hint="Tambahkan catatan untuk driver..."
+                android:gravity="top|start"
+                android:padding="8dp"
+                android:background="@drawable/border_input_rounded"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="24dp"
+                android:paddingVertical="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Harga" android:textColor="@color/neutral_text_dark"/>
+                    <TextView android:id="@+id/tv_harga" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10.500" android:textColor="@color/neutral_text_dark"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Diskon 50%" android:textColor="@color/accent_warning_red"/>
+                    <TextView android:id="@+id/tv_diskon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-2000" android:textColor="@color/accent_warning_red"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Biaya Penanganan dan Pengiriman" android:textColor="@color/neutral_text_dark"/>
+                    <TextView android:id="@+id/tv_biaya_penanganan_dan_pengiriman" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15.500" android:textColor="@color/neutral_text_dark"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/neutral_divider" android:layout_marginBottom="8dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Total Pembayaran" android:textStyle="bold" android:textColor="@color/neutral_text_dark" android:textSize="16sp"/>
+                    <TextView android:id="@+id/tv_total_pembayaran" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15.500" android:textStyle="bold" android:textColor="@color/neutral_text_dark" android:textSize="16sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_konfirmasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Konfirmasi"
+        android:backgroundTint="@color/neutral_text_dark"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:cornerRadius="28dp"
+        android:paddingVertical="12dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
