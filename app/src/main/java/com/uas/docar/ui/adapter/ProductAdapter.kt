@@ -3,7 +3,7 @@ package com.uas.docar.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.uas.docar.R
+import com.uas.docar.R // Import untuk mengakses sumber daya drawable
 import com.uas.docar.databinding.ItemFoodCardBinding
 import com.uas.docar.data.model.Product
 import com.uas.docar.utils.Formatter
@@ -27,13 +27,32 @@ class ProductAdapter(
             val normalizedName = productName.lowercase()
 
             return when {
-                // Logika: Kalau namanya ada kata "bakso", pakai gambar bakso
+                // 1. PALING SPESIFIK: Menggunakan operator 'DAN' untuk membedakan jenis Ayam
+                // 'Ayam Bakar'
+                normalizedName.contains("ayam") && normalizedName.contains("bakar") -> R.drawable.ayam_bakar
+
+                // 'Ayam Krispi' / 'Ayam Goreng Tepung'
+                normalizedName.contains("ayam") && normalizedName.contains("krispi") -> R.drawable.ayam_goreng_tepung
+
+                // 2. SPESIFIK: Kondisi unik 'Pecel'
+                normalizedName.contains("pecel") -> R.drawable.nasi_pecel
+
+                // 3. AGAK SPESIFIK: Urutan penting karena konflik dengan kata 'goreng'
+                // 'Mie Goreng' (harus di atas Nasi Goreng/yang mengandung 'goreng')
+                normalizedName.contains("mie") && normalizedName.contains("goreng") -> R.drawable.mie_goreng
+
+                // 'Bakso Bakar Goreng' (harus di atas yang mengandung 'goreng' saja)
                 normalizedName.contains("bakso") -> R.drawable.bakso
 
+                // 4. LEBIH UMUM: Hanya menggunakan satu kata utama
+                // 'Mie Ayam'
                 normalizedName.contains("mie") -> R.drawable.mie_ayam
 
+                // 'Nasi Goreng' / Nasi lainnya (diutamakan 'goreng' di sini karena sudah lolos dari 'mie goreng')
                 normalizedName.contains("nasi") || normalizedName.contains("goreng") -> R.drawable.nasi_goreng
 
+                // 5. PALING UMUM / DEFAULT
+                else -> R.drawable.kari // Drawable default
                 // Fallback: Kalau tidak ada yang cocok, pakai gambar default (kari)
                 else -> R.drawable.kari
             }
