@@ -1,60 +1,76 @@
 package com.uas.docar.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.uas.docar.R
+import androidx.fragment.app.Fragment
+import com.uas.docar.data.model.RiwayatItem
+import com.uas.docar.databinding.FragmentRiwayatBinding
+import com.uas.docar.databinding.ItemRiwayatBinding
+import com.uas.docar.utils.Formatter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RiwayatFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RiwayatFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentRiwayatBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_riwayat, container, false)
+    ): View {
+        _binding = FragmentRiwayatBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RiwayatFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RiwayatFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupManualList()
+    }
+
+    // --- DATA DUMMY ---
+    private fun getDummyData(): List<RiwayatItem> {
+        return listOf(
+            RiwayatItem(1, "Nasi Goreng Pak Budi", "15 Des 2025", 18000, "Selesai", "FOOD"),
+            RiwayatItem(2, "DoCar ke Stasiun", "13 Des 2025", 25000, "Selesai", "RIDE"),
+            RiwayatItem(3, "Ayam Geprek Sai", "12 Des 2025", 22000, "Dibatalkan", "FOOD"),
+            RiwayatItem(4, "DoRide ke Kampus", "10 Des 2025", 10000, "Selesai", "RIDE"),
+            RiwayatItem(5, "Martabak Manis", "08 Des 2025", 35000, "Selesai", "FOOD")
+        )
+    }
+
+    // --- LOGIKA MENAMPILKAN LIST TANPA ADAPTER ---
+    private fun setupManualList() {
+        val dataList = getDummyData()
+
+        // Hapus view lama jika ada (untuk mencegah duplikasi saat fragment di-refresh)
+        binding.llRiwayatContainer.removeAllViews()
+
+        for (item in dataList) {
+            // 1. Inflate layout item
+            val itemBinding = ItemRiwayatBinding.inflate(layoutInflater, binding.llRiwayatContainer, false)
+
+            // 2. Isi data
+            itemBinding.tvTitle.text = item.title
+            itemBinding.tvDate.text = item.date
+            itemBinding.tvPrice.text = Formatter.toRupiah(item.price)
+            itemBinding.tvStatus.text = item.status
+
+            // 3. Atur warna status
+            if (item.status == "Dibatalkan") {
+                itemBinding.tvStatus.setTextColor(Color.RED)
+            } else {
+                itemBinding.tvStatus.setTextColor(Color.parseColor("#4CAF50")) // Hijau
             }
+
+            // 4. Tambahkan ke Container
+            binding.llRiwayatContainer.addView(itemBinding.root)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

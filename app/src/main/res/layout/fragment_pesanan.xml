@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/neutral_bg_light"
+    android:paddingTop="24dp"
+    tools:context="com.uas.docar.ui.home.PesananFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pesanan Aktif"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/neutral_text_dark"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Belum ada pesanan aktif saat ini."
+        android:gravity="center"
+        android:padding="50dp"
+        android:textColor="@color/neutral_placeholder"/>
+
+</LinearLayout>

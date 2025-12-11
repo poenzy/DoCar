@@ -32,35 +32,49 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // 1. Setup RecyclerView Rekomendasi
         setupRecommendedRecyclerView()
-
-        // 2. Setup Listener Tombol Layanan
+        setupSpesialForYouRecyclerView()
         setupServiceButtons()
     }
 
     private fun setupRecommendedRecyclerView() {
-        // DATA DUMMY (Akan menggunakan ProductAdapter yang sudah diperbaiki untuk memetakan gambar)
+        // DATA DUMMY: Nama-nama produk ini yang akan dianalisis oleh ProductAdapter
         val productList = listOf(
             // Product(id, name, price: Int, imageUrl, description, isAvailable: Boolean)
-            Product(1, "Bakso Bakar Goreng", 15000, "", "Bakso pedas mantap", true),
-            Product(2, "Mie Ayam Uenak", 20000, "", "Mie ayam enak dan porsi besar", true),
-            Product(3, "Kari Seafood", 35000, "", "Kari dengan aneka seafood segar", true),
-            Product(4, "Nasi Goreng Cihuy", 18000, "", "Nasi goreng spesial pedas", true)
+            Product(1, "Bakso Bakar Goreng", 15000, "", "Bakso pedas mantap", true), // Akan dipetakan ke R.drawable.bakso
+            Product(2, "Mie Ayam Uenak", 20000, "", "Mie ayam enak dan porsi besar", true),       // Akan dipetakan ke R.drawable.mie_ayam
+            Product(3, "Kari Seafood Seger", 35000, "", "Kari dengan aneka seafood segar", true),         // Akan dipetakan ke R.drawable.kari
+            Product(4, "Nasi Goreng Cihuy", 18000, "", "Nasi goreng spesial pedas", true)         // Akan dipetakan ke R.drawable.nasi_goreng
         )
 
-        // Adapter menerima data dan lambda function untuk klik item
+
+        // KONEKSI: ProductAdapter menerima list data ini
         val adapter = ProductAdapter(productList) { product ->
-            // Aksi klik: Pindah ke Detail Pesanan Makanan
             navigateToDetailPesanan(product.id)
         }
 
-        // Setup RecyclerView (Horizontal)
         binding.rvRecomended.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRecomended.adapter = adapter
     }
+    private fun setupSpesialForYouRecyclerView() {
+        val productList = listOf(
+            // Product(id, name, price: Int, imageUrl, description, isAvailable: Boolean)
 
+            Product(1, "Mie Ayam Pakpri", 20000, "", "Mie ayam enak dan porsi besar", true),       // Akan dipetakan ke R.drawable.mie_ayam
+            Product(2, "Oseng Seafood Mantab", 35000, "", "Kari dengan aneka seafood segar", true),         // Akan dipetakan ke R.drawable.kari
+            Product(3, "Bakso Pojok Sleko", 15000, "", "Bakso pedas mantap", true), // Akan dipetakan ke R.drawable.bakso
+            Product(4, "Nasi Mawut Prapatan", 18000, "", "Nasi goreng spesial pedas", true)         // Akan dipetakan ke R.drawable.nasi_goreng
+        )
+
+
+        // KONEKSI: ProductAdapter menerima list data ini
+        val adapter = ProductAdapter(productList) { product ->
+            navigateToDetailPesanan(product.id)
+        }
+
+        binding.rvSpecial.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvSpecial.adapter = adapter
+    }
     private fun navigateToDetailPesanan(productId: Int) {
         val intent = Intent(requireContext(), DetailPesananActivity::class.java).apply {
             putExtra("PRODUCT_ID", productId)
@@ -69,19 +83,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupServiceButtons() {
-        // 1. Tombol Antar Jemput (Ride)
         binding.btnRide.setOnClickListener {
             val intent = Intent(requireContext(), SearchInputActivity::class.java)
             startActivity(intent)
         }
-
-        // 2. Tombol Makanan (Food)
         binding.btnFood.setOnClickListener {
             val intent = Intent(requireContext(), SearchFoodActivity::class.java)
             startActivity(intent)
         }
-
-        // 3. Search Bar (mengarah ke Search Input Ride, asumsi)
         binding.etSearch.setOnClickListener {
             val intent = Intent(requireContext(), SearchInputActivity::class.java)
             startActivity(intent)
@@ -89,7 +98,6 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        // Wajib: Menghapus referensi binding untuk menghindari kebocoran memori (memory leak)
         super.onDestroyView()
         _binding = null
     }
