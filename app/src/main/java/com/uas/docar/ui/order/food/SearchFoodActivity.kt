@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+// *** IMPORT BARU UNTUK GRID LAYOUT ***
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.uas.docar.data.model.Product
-import com.uas.docar.databinding.ActivitySearchFoodBinding
-import com.uas.docar.ui.adapter.ProductAdapter
+import com.uas.docar.data.model.Product // Model data untuk produk
+import com.uas.docar.databinding.ActivitySearchFoodBinding // View Binding
+import com.uas.docar.ui.adapter.ProductAdapter // Adapter untuk list
 
 class SearchFoodActivity : AppCompatActivity() {
 
@@ -25,10 +27,12 @@ class SearchFoodActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        // Tombol Kembali
         binding.btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        // Listener Pencarian (Saat tombol Search di keyboard ditekan)
         binding.etSearchInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val query = binding.etSearchInput.text.toString()
@@ -36,6 +40,7 @@ class SearchFoodActivity : AppCompatActivity() {
                     Toast.makeText(this, "Mencari: $query", Toast.LENGTH_SHORT).show()
                     // TODO: Implementasi logika filter/panggilan API di sini
                 }
+                // Mengonsumsi event (menutup keyboard setelah pencarian)
                 true
             } else {
                 false
@@ -44,18 +49,24 @@ class SearchFoodActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
+        // DATA DUMMY (tetap sama)
         val searchResults = listOf(
             Product(5, "Ayam Geprek Sai Amin Yapper", 12000, "", "Ayam geprek crispy level 1-5", true),
             Product(6, "Nasi Goreng Pak Budi", 15000, "", "Nasi goreng kampung favorit", true),
             Product(7, "Soto Ayam Mbak Rini", 18000, "", "Soto ayam bening segar", true),
             Product(8, "Bakso Granat Pedas", 25000, "", "Bakso pedas mantap", true),
+            Product(9, "Kari Ayam Pedas", 30000, "", "Kari ayam dengan bumbu kuat", true),
+            Product(10, "Mie Aceh Spesial", 22000, "", "Mie tebal dengan bumbu Aceh", true),
         )
 
         val adapter = ProductAdapter(searchResults) { product ->
             navigateToDetailPesanan(product.id)
         }
 
-        binding.rvSearchResults.layoutManager = LinearLayoutManager(this)
+        // V PERBAIKAN KRITIS: Ganti LinearLayoutManager dengan GridLayoutManager V
+        val spanCount = 2 // <-- Ganti angka ini menjadi 3 jika Anda ingin 3 kolom
+        binding.rvSearchResults.layoutManager = GridLayoutManager(this, spanCount)
+
         binding.rvSearchResults.adapter = adapter
     }
 
