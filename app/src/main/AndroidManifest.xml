@@ -6,40 +6,22 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_docar_logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_docar_logo"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoCar">
         <activity
-            android:name=".ui.order.food.SearchFoodActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".ui.order.ride.OrderFinishedActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.order.food.DetailPesananActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".ui.order.ride.PaymentMethodActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.order.ride.food.DetailPesananActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".ui.order.ride.DetailPesananActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.order.ride.DriverStatusRideActivity"
+            android:name=".ui.order.food.SearchFoodLocationActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -58,23 +40,25 @@
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ui.order.food.SearchFoodActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.order.ride.OrderConfirmationActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.order.ride.DriverStatusRideActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.food.SearchFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.food.DetailPesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.food.DriverStatusFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.ride.OrderConfirmationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.ride.DriverStatusRideActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.order.ride.SearchInputActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ui.order.ride.OrderFinishedActivity" -->
-        <!-- android:exported="false" /> -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="GANTI_DENGAN_GOOGLE_MAPS_API_KEY_ANDA" />
+            android:exported="false" />
     </application>
 
 </manifest>
