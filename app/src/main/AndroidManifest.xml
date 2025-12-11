@@ -12,10 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoCar">
         <activity
-            android:name=".ui.order.ride.DriverStatusRideActivity"
-            android:exported="false" />
+            android:name=".ui.order.food.SearchFoodActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.order.food.DetailPesananActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.order.ride.food.DetailPesananActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.order.ride.DriverStatusRideActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
