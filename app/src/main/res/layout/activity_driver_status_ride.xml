@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.order.ride.DriverStatusRideActivity">
 
-    <View
-        android:id="@+id/map_placeholder"
+    <ImageView
+        android:id="@+id/map_dummy"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/neutral_divider"
+        android:src="@drawable/dummy_map"
+        android:scaleType="centerCrop"
+        android:contentDescription="Peta Lokasi"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
