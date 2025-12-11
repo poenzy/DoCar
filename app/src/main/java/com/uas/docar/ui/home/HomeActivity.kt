@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.uas.docar.R
-import com.uas.docar.databinding.ActivityHomeBinding
+import com.uas.docar.databinding.ActivityHomeBinding // View Binding untuk activity_home.xml
 
 class HomeActivity : AppCompatActivity() {
 
@@ -16,12 +16,10 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Muat Fragment Home sebagai Fragment default saat pertama kali dibuka
         if (savedInstanceState == null) {
             loadFragment(HomeFragment())
         }
 
-        // Listener untuk Bottom Navigation
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -45,7 +43,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk mengganti Fragment di dalam FrameLayout
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)

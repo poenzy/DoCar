@@ -39,7 +39,9 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
+
         Toast.makeText(this, "Registrasi Berhasil! Anda akan masuk.", Toast.LENGTH_LONG).show()
+
 
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
