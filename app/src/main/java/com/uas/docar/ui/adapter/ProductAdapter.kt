@@ -24,16 +24,31 @@ class ProductAdapter(
             val normalizedName = productName.lowercase()
 
             return when {
-                // 'Bakso Bakar Goreng' -> Mengandung 'bakso' -> R.drawable.bakso
+                // 1. PALING SPESIFIK: Menggunakan operator 'DAN' untuk membedakan jenis Ayam
+                // 'Ayam Bakar'
+                normalizedName.contains("ayam") && normalizedName.contains("bakar") -> R.drawable.ayam_bakar
+
+                // 'Ayam Krispi' / 'Ayam Goreng Tepung'
+                normalizedName.contains("ayam") && normalizedName.contains("krispi") -> R.drawable.ayam_goreng_tepung
+
+                // 2. SPESIFIK: Kondisi unik 'Pecel'
+                normalizedName.contains("pecel") -> R.drawable.nasi_pecel
+
+                // 3. AGAK SPESIFIK: Urutan penting karena konflik dengan kata 'goreng'
+                // 'Mie Goreng' (harus di atas Nasi Goreng/yang mengandung 'goreng')
+                normalizedName.contains("mie") && normalizedName.contains("goreng") -> R.drawable.mie_goreng
+
+                // 'Bakso Bakar Goreng' (harus di atas yang mengandung 'goreng' saja)
                 normalizedName.contains("bakso") -> R.drawable.bakso
 
-                // 'Mie Ayam Uenak' -> Mengandung 'mie' -> R.drawable.mie_ayam
+                // 4. LEBIH UMUM: Hanya menggunakan satu kata utama
+                // 'Mie Ayam'
                 normalizedName.contains("mie") -> R.drawable.mie_ayam
 
-                // 'Nasi Goreng Cihuy' -> Mengandung 'nasi' atau 'goreng' -> R.drawable.nasi_goreng
+                // 'Nasi Goreng' / Nasi lainnya (diutamakan 'goreng' di sini karena sudah lolos dari 'mie goreng')
                 normalizedName.contains("nasi") || normalizedName.contains("goreng") -> R.drawable.nasi_goreng
 
-                // 'Kari Seafood' -> Tidak cocok di atas -> R.drawable.kari
+                // 5. PALING UMUM / DEFAULT
                 else -> R.drawable.kari // Drawable default
             }
         }
@@ -51,7 +66,7 @@ class ProductAdapter(
             }
         }
     }
-    // ... (Sisa kode adapter tidak berubah) ...
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemFoodCardBinding.inflate(
             LayoutInflater.from(parent.context),
