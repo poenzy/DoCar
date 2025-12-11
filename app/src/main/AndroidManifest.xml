@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoCar">
         <activity
+            android:name=".ui.order.food.SearchFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.order.ride.OrderFinishedActivity"
             android:exported="false" />
         <activity
@@ -40,9 +43,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.order.food.SearchFoodActivity"
             android:exported="false" />
         <activity
             android:name=".ui.order.food.DetailPesananActivity"
