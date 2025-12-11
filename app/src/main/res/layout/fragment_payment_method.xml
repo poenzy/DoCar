@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.order.food.PaymentMethodFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-Wallet"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
 
-</FrameLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_group_payment">
+
+        <RadioButton
+            android:id="@+id/rb_docar_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DoCar"
+            android:padding="16dp"
+            android:background="@drawable/bg_radio_option"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_dana_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dana"
+            android:padding="16dp"
+            android:background="@drawable/bg_radio_option"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tunai"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bayar ke Driver"
+            android:padding="16dp"
+            android:background="@drawable/bg_radio_option"/>
+
+    </RadioGroup>
+</LinearLayout>
