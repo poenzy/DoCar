@@ -8,7 +8,9 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.uas.docar.databinding.FragmentRatingDialogBinding
 
+//muncul dari bawah.
 class RatingDialogFragment : BottomSheetDialogFragment() {
+
     private var _binding: FragmentRatingDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -27,18 +29,24 @@ class RatingDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // set listener buat tombol submit
+        // tombol 'kirim'
         binding.btnSubmitRating.setOnClickListener {
+            //mengambil nilai dari Input
             val ratingValue = binding.ratingBar.rating
             val komentar = binding.etKomentar.text.toString()
 
+            //validasi input
             if (ratingValue > 0) {
+                // skenario Sukses
                 Toast.makeText(requireContext(),
-                    "Rating $ratingValue bintang berhasil dikirim. Komentar: $komentar",
+                    "Rating $ratingValue bintang berhasil dikirim. Terima kasih!",
                     Toast.LENGTH_LONG).show()
-                dismiss() // ini buat ilangin toastnya kalo uda input require context
+
+
+                dismiss()
             } else {
-                Toast.makeText(requireContext(), "Mohon berikan rating (minimal 1 bintang)", Toast.LENGTH_SHORT).show()
+                // skenario gagal
+                Toast.makeText(requireContext(), "Mohon berikan bintang terlebih dahulu.", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -26,10 +26,10 @@ class RiwayatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Memanggil fungsi untuk menyusun daftar riwayat secara manual
         setupManualList()
     }
 
-    // --- DATA DUMMY ---
     private fun getDummyData(): List<RiwayatItem> {
         return listOf(
             RiwayatItem(1, "Nasi Goreng Pak Budi", "15 Des 2025", 18000, "Selesai", "FOOD"),
@@ -40,31 +40,33 @@ class RiwayatFragment : Fragment() {
         )
     }
 
-    // --- LOGIKA MENAMPILKAN LIST TANPA ADAPTER ---
+    // LOGIKA MENAMPILKAN LIST TANPA ADAPTER
     private fun setupManualList() {
         val dataList = getDummyData()
 
-        // Hapus view lama jika ada (untuk mencegah duplikasi saat fragment di-refresh)
+        // Membersihkan Wadah agar tidak terjadi duplikasi
         binding.llRiwayatContainer.removeAllViews()
 
+        // Looping Data
         for (item in dataList) {
-            // 1. Inflate layout item
+
+            // mengambil desain 'item_riwayat.xml' mengubahnya menjadi View
             val itemBinding = ItemRiwayatBinding.inflate(layoutInflater, binding.llRiwayatContainer, false)
 
-            // 2. Isi data
+            // Mengisi Data
             itemBinding.tvTitle.text = item.title
             itemBinding.tvDate.text = item.date
-            itemBinding.tvPrice.text = Formatter.toRupiah(item.price)
+            itemBinding.tvPrice.text = Formatter.toRupiah(item.price) // Format harga jadi Rp...
             itemBinding.tvStatus.text = item.status
 
-            // 3. Atur warna status
+            // Logika Warna Status Jika batal warna Merah, jika sukses warna Hijau
             if (item.status == "Dibatalkan") {
                 itemBinding.tvStatus.setTextColor(Color.RED)
             } else {
-                itemBinding.tvStatus.setTextColor(Color.parseColor("#4CAF50")) // Hijau
+                itemBinding.tvStatus.setTextColor(Color.parseColor("#4CAF50"))
             }
 
-            // 4. Tambahkan ke Container
+            // Menempelkan ke Layar view yang ke dalam ContainerLinearLayout di ScrollView."
             binding.llRiwayatContainer.addView(itemBinding.root)
         }
     }

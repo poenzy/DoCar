@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/neutral_bg_light"
     tools:context="com.uas.docar.ui.home.HomeFragment">
 
     <ScrollView
@@ -23,22 +23,17 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="12dp">
 
-                <EditText
-                    android:id="@+id/et_search"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/TextViewHome"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:hint="mau kemana hari ini"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:background="@drawable/search_background"
-                    android:drawableStart="@drawable/ic_search"
-                    android:drawablePadding="8dp"
-                    android:textSize="16sp"
-                    android:textColorHint="@color/neutral_text_dark"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_profile"/>
+                    android:text="Home"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/neutral_text_dark"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="16dp"
+                    tools:ignore="MissingConstraints" />
 
                 <ImageView
                     android:id="@+id/iv_profile"
@@ -48,8 +43,7 @@
                     android:src="@drawable/ic_profile_placeholder"
                     android:background="@drawable/splash_circle"
                     android:backgroundTint="@color/neutral_divider"
-                    app:layout_constraintTop_toTopOf="@+id/et_search"
-                    app:layout_constraintBottom_toBottomOf="@+id/et_search"
+                    app:layout_constraintTop_toTopOf="@+id/TextViewHome"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:contentDescription="Profile"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -76,12 +70,12 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_antar_jemput"
                     android:text="antar jemput"
                     android:textAllCaps="false"
-                    android:backgroundTint="@color/neutral_divider"
-                    android:textColor="@color/neutral_text_dark"
+                    android:backgroundTint="@color/docar_green"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:textSize="23dp"
                     app:cornerRadius="8dp"
                     android:layout_marginEnd="8dp"/>
 
@@ -92,9 +86,10 @@
                     android:layout_weight="1"
                     android:text="makanan"
                     android:textAllCaps="false"
-                    android:backgroundTint="@color/neutral_divider"
-                    android:textColor="@color/neutral_text_dark"
+                    android:backgroundTint="@color/docar_green"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:textSize="23dp"
                     app:cornerRadius="8dp"
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
