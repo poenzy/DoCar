@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.uas.docar.databinding.FragmentPaymentMethodBinding
 
+//Mewarisi 'BottomSheetDialogFragment' agar muncul dari bawah (Slide Up)
 class PaymentMethodFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentPaymentMethodBinding? = null
@@ -24,33 +25,34 @@ class PaymentMethodFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // --- KOREKSI ERROR DIMULAI DI SINI ---
+        setupListeners()
+    }
 
-        // 1. KOREKSI: Gunakan 'radio_group_payment' (bukan rGEWallet)
+    private fun setupListeners() {
+        //PENGATURAN RADIO GROUP mendeteksi perubahan pilihan
         binding.radioGroupPayment.setOnCheckedChangeListener { _, checkedId ->
+
+            // Logika memilih nama metode berdasarkan ID tombol yang ditekan
             val selectedMethod = when (checkedId) {
-                // 2. KOREKSI: Gunakan 'rb_docar_wallet' (bukan rbDocarPay)
                 binding.rbDocarWallet.id -> "DoCar Pay"
-
-                // 3. KOREKSI: Gunakan 'rb_dana_wallet' (bukan rbDana)
                 binding.rbDanaWallet.id -> "Dana"
-
                 else -> ""
             }
+
             if (selectedMethod.isNotEmpty()) {
                 Toast.makeText(requireContext(), "Metode dipilih: $selectedMethod", Toast.LENGTH_SHORT).show()
-                // TODO: Simpan pilihan ke Activity/ViewModel
+
+                //Tutup BottomSheet otomatis
                 dismiss()
             }
         }
 
-        // Listener untuk Tunai (Cash)
+        //PENGATURAN TOMBOL TUNAI
         binding.rbCash.setOnClickListener {
             Toast.makeText(requireContext(), "Metode dipilih: Tunai", Toast.LENGTH_SHORT).show()
-            // TODO: Simpan pilihan 'Cash' ke Activity/ViewModel
+
             dismiss()
         }
-        // --- KOREKSI ERROR SELESAI ---
     }
 
     override fun onDestroyView() {

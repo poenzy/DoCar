@@ -7,10 +7,9 @@ import com.uas.docar.databinding.ItemSearchHistoryBinding // View Binding untuk 
 
 // Kelas utama Adapter, mewarisi dari RecyclerView.Adapter.
 class SearchHistoryAdapter(
-    // Parameter konstruktor 1: Daftar data (Riwayat pencarian, berupa List of String).
+    // Daftar data (Riwayat pencarian, berupa List of String).
     private val historyList: List<String>,
-    // Parameter konstruktor 2: Sebuah fungsi lambda yang akan dipanggil ketika item diklik.
-    // Fungsi ini menerima satu String (lokasi yang diklik) dan tidak mengembalikan nilai.
+    // fungsi lambda yangdipanggil ketika item diklik.
     private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<SearchHistoryAdapter.HistoryViewHolder>() {
 
@@ -18,42 +17,36 @@ class SearchHistoryAdapter(
     inner class HistoryViewHolder(private val binding: ItemSearchHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        // Fungsi 'bind' bertugas mengisi data ke dalam tampilan item.
+        //mengisi data ke dalam tampilan item.
         fun bind(location: String) {
-            // Mengatur teks riwayat pencarian ke TextView yang ada di layout item.
+            // Mengatur teks riwayat pencarian
             binding.tvHistoryLocation.text = location
 
-            // Menambahkan OnClickListener pada root view (seluruh item).
+            // Menambahkan OnClickListener pada root view
             binding.root.setOnClickListener {
-                // Ketika item diklik, panggil fungsi lambda yang diberikan di konstruktor,
-                // dan berikan data 'location' sebagai argumen.
+                // memanggil fungsi lambda dan berikan data 'location'
                 onItemClick(location)
             }
         }
     }
 
-    // 2. onCreateViewHolder: Bertanggung jawab membuat ViewHolder baru.
-    // Dipanggil ketika RecyclerView membutuhkan ViewHolder baru untuk menampilkan item.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        // Menggunakan View Binding untuk meng-inflate layout item (item_search_history.xml).
         val binding = ItemSearchHistoryBinding.inflate(
-            LayoutInflater.from(parent.context), // Mendapatkan LayoutInflater dari konteks parent.
-            parent, // Parent (ViewGroup)
-            false // 'false' karena RecyclerView yang akan menambahkan view ini, bukan kita.
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
-        // Membuat dan mengembalikan instance HistoryViewHolder dengan binding yang baru dibuat.
+        // mengembalikan instance HistoryViewHolder
         return HistoryViewHolder(binding)
     }
 
-    // 3. onBindViewHolder: Bertanggung jawab mengikat data ke ViewHolder pada posisi tertentu.
-    // Dipanggil berulang kali untuk mengisi data ke ViewHolder yang sudah ada.
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        // Mengambil data String dari list sesuai 'position'.
+        // Mengambil data String sesuai posisi
         val item = historyList[position]
-        // Memanggil fungsi 'bind' pada ViewHolder untuk mengisi data tersebut ke UI.
+        // Memanggil fungsi bind
         holder.bind(item)
     }
 
-    // 4. getItemCount: Mengembalikan jumlah total item dalam dataset.
+    // Mengembalikan jumlah total item dalam dataset.
     override fun getItemCount(): Int = historyList.size
 }

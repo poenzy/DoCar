@@ -12,31 +12,42 @@ class OrderConfirmationActivity : AppCompatActivity() {
 
     private val hargaMotor = 7500
     private val hargaMobil = 60500
-    private var currentPrice = hargaMotor // Simpan harga yang sedang dipilih
+
+    // Variabel penampung harga
+    private var currentPrice = hargaMotor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOrderConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Tampilkan Harga Awal (Default Motor)
+        //Inisiasi Tampilan Awal dan Set harga default
         updatePriceDisplay(hargaMotor)
 
-        // 2. Listener untuk RadioGroup Kendaraan
+        // Radio ganti halaman
         binding.rgKendaraan.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                binding.rbMotor.id -> { currentPrice = hargaMotor; updatePriceDisplay(hargaMotor) }
-                binding.rbMobil.id -> { currentPrice = hargaMobil; updatePriceDisplay(hargaMobil) }
+                // pilih Motor -> Set variabel ke harga motor -> Update Teks
+                binding.rbMotor.id -> {
+                    currentPrice = hargaMotor
+                    updatePriceDisplay(hargaMotor)
+                }
+                binding.rbMobil.id -> {
+                    currentPrice = hargaMobil
+                    updatePriceDisplay(hargaMobil)
+                }
             }
         }
 
-        // 3. Listener Tombol Mencari Driver
         binding.btnCariDriver.setOnClickListener {
             val intent = Intent(this, DriverStatusRideActivity::class.java).apply {
-                // Meneruskan data harga ride yang sudah diupdate
+                // Meneruskan Tipe Order
                 putExtra(OrderFinishedActivity.ORDER_TYPE_KEY, OrderFinishedActivity.TYPE_RIDE)
+
+                //Meneruskan harga terakhir
                 putExtra("EXTRA_TOTAL", currentPrice)
-                // Tambahkan data ride lainnya
+
+                // Data tambahan (Simulasi Jarak & Waktu)
                 putExtra("EXTRA_DISTANCE", 500)
                 putExtra("EXTRA_TIME", 7)
             }
@@ -45,9 +56,11 @@ class OrderConfirmationActivity : AppCompatActivity() {
         }
     }
 
-    // FUNGSI INI ADALAH SOLUSI UNTUK ERROR UNRESOLVED REFERENCE
     private fun updatePriceDisplay(price: Int) {
+        // format ke rupiah
         val formattedPrice = Formatter.toRupiah(price)
-        binding.tvBasePrice.text = formattedPrice + ",-"
+
+        // Menambahkan akhiran ",-"
+        binding.tvBasePrice.text = "$formattedPrice,-"
     }
 }

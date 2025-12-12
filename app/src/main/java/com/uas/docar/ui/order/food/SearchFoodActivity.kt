@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-// *** IMPORT BARU UNTUK GRID LAYOUT ***
+// Import Layout Manager yang berbeda
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.uas.docar.data.model.Product // Model data untuk produk
-import com.uas.docar.databinding.ActivitySearchFoodBinding // View Binding
-import com.uas.docar.ui.adapter.ProductAdapter // Adapter untuk list
+import com.uas.docar.data.model.Product
+import com.uas.docar.databinding.ActivitySearchFoodBinding
+import com.uas.docar.ui.adapter.ProductAdapter
 
 class SearchFoodActivity : AppCompatActivity() {
 
@@ -27,20 +27,22 @@ class SearchFoodActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Tombol Kembali
+        // Tombol Kembali: Menggunakan dispatcher standar Android
         binding.btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Listener Pencarian (Saat tombol Search di keyboard ditekan)
+        // INTERAKSI KEYBOARD
         binding.etSearchInput.setOnEditorActionListener { _, actionId, _ ->
+            // mengecek apakah tombol yang ditekan adalah 'Action Search'
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val query = binding.etSearchInput.text.toString()
+
+                // Validasi input tidak boleh kosong
                 if (query.isNotEmpty()) {
                     Toast.makeText(this, "Mencari: $query", Toast.LENGTH_SHORT).show()
-                    // TODO: Implementasi logika filter/panggilan API di sini
                 }
-                // Mengonsumsi event (menutup keyboard setelah pencarian)
+
                 true
             } else {
                 false
@@ -49,7 +51,6 @@ class SearchFoodActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        // DATA DUMMY (tetap sama)
         val searchResults = listOf(
             Product(5, "Ayam Geprek Sai Amin Yapper", 12000, "", "Ayam geprek crispy level 1-5", true),
             Product(6, "Nasi Goreng Pak Budi", 15000, "", "Nasi goreng kampung favorit", true),
@@ -63,13 +64,15 @@ class SearchFoodActivity : AppCompatActivity() {
             navigateToDetailPesanan(product.id)
         }
 
-        // V IMPLEMENTASI GRID LAYOUT DENGAN 2 KOLOM V
+        //GRID LAYOUT
+        // menggunakan spanCount = 2 tampilan akan dibagi menjadi 2 kolom (Kiri dan Kanan).
         val spanCount = 2
         binding.rvSearchResults.layoutManager = GridLayoutManager(this, spanCount)
 
         binding.rvSearchResults.adapter = adapter
     }
 
+    // Navigasi ke Detail
     private fun navigateToDetailPesanan(productId: Int) {
         val intent = Intent(this, DetailPesananActivity::class.java).apply {
             putExtra("PRODUCT_ID", productId)

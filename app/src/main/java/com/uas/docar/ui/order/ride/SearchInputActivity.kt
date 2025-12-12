@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uas.docar.databinding.ActivitySearchInputBinding
-import com.uas.docar.ui.adapter.SearchHistoryAdapter // <-- Adapter Riwayat akan dibuat
+import com.uas.docar.ui.adapter.SearchHistoryAdapter
 
 class SearchInputActivity : AppCompatActivity() {
 
@@ -29,7 +29,9 @@ class SearchInputActivity : AppCompatActivity() {
 
         setupHistoryRecyclerView()
 
+        //Jika mengetik lalu menekan area lain dianggap sudah selesai dan langsung lanjut."
         binding.etDestinationInput.setOnFocusChangeListener { _, hasFocus ->
+            // Jika menekan area lain dan teks tdak kosong
             if (!hasFocus && binding.etDestinationInput.text.isNotEmpty()) {
                 navigateToOrderConfirmation()
             }
@@ -38,7 +40,11 @@ class SearchInputActivity : AppCompatActivity() {
 
     private fun setupHistoryRecyclerView() {
         val adapter = SearchHistoryAdapter(searchHistory) { location ->
+
+            // jika user mengklik salah satu riwayat tulis lokasi ke kolom input
             binding.etDestinationInput.setText(location)
+
+            //langsung pindah ke halaman konfirmasi
             navigateToOrderConfirmation()
         }
 
